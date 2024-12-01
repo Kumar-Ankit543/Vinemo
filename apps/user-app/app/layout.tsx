@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "../providers";
 import { Inter } from "next/font/google";
+import { AppbarClient } from "../components/AppbarClient";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <div>
+            <AppbarClient />
+            {children}
+          </div>
+        </body>
       </Providers>
     </html>
   );
