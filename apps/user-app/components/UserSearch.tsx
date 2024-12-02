@@ -39,7 +39,7 @@ export function UserSearch() {
                 <p className="text-sm text-gray-500">@{user.username}</p>
               </div>
             </div>
-            <button className="px-4 py-2 text-sm font-medium text-indigo-600 hover:bg-indigo-50 rounded-lg">
+            <button className="px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 rounded-lg">
               Select
             </button>
           </div>

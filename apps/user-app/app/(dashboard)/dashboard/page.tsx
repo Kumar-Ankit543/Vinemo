@@ -12,7 +12,6 @@ const stats = [
 ];
 
 export default async function HomePage() {
-  //@ts-ignore
   const session = await getServerSession(authOptions);
   if (!session?.user) {
     redirect("/api/auth/signin");

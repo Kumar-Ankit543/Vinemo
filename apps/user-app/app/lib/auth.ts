@@ -55,7 +55,7 @@ export const authOptions = {
       },
     }),
   ],
-  session: process.env.NEXTAUTH_SECRET || "secret",
+  secret: process.env.NEXTAUTH_SECRET || "secret",
   callbacks: {
     async session({ session, token, user }: any) {
       session.user.id = token.sub;

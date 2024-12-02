@@ -1,5 +1,6 @@
 import { UserSearch } from "../../../components/UserSearch";
 import { PaymentForm } from "../../../components/PaymentForm";
+import { BalanceCard } from "../../../components/BalanceCard";
 
 export default function TransferPage() {
   return (
@@ -10,8 +11,8 @@ export default function TransferPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <UserSearch />
         <PaymentForm />
+        <BalanceCard amount={100} locked={200} />
       </div>
     </div>
   );
