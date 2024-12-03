@@ -9,9 +9,10 @@ interface AppBarProps {
   };
   onSignin: any;
   onSignout: any;
+  name?: string;
 }
 
-export const AppBar = ({ user, onSignin, onSignout }: AppBarProps) => {
+export const AppBar = ({ user, onSignin, onSignout, name }: AppBarProps) => {
   return (
     <div className="border-b px-4">
       <header className="flex justify-between px-4 lg:px-6 h-12 flex items-center">
@@ -23,7 +24,7 @@ export const AppBar = ({ user, onSignin, onSignout }: AppBarProps) => {
           {user ? (
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback>{name}</AvatarFallback>
             </Avatar>
           ) : (
             <div></div>
