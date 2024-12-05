@@ -11,7 +11,7 @@ export const AppbarClient = () => {
       <AppBar
         onSignin={async () => {
           await signIn();
-          router.push("/home");
+          router.push("/dashboard");
         }}
         onSignout={signOut}
         user={session.data?.user}

@@ -4,6 +4,7 @@ export const Select = ({
 }: {
   onSelect: (value: String) => void;
   options: {
+    id: String;
     key: String;
     value: String;
   }[];
@@ -16,7 +17,9 @@ export const Select = ({
       className="border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
     >
       {options.map((option) => (
-        <option value={option.key as string}>{option.value}</option>
+        <option key={option.id as string} value={String(option.key)}>
+          {option.value}
+        </option>
       ))}
     </select>
   );

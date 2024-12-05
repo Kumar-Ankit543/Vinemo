@@ -1,14 +1,16 @@
 "use client";
 import { Select } from "@repo/ui/select";
 import { IndianRupee } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SUPPORTED_BANKS = [
   {
+    id: "1",
     name: "HDFC Bank",
     redirectURL: "https://netbanking.hdfcbank.com",
   },
   {
+    id: "2",
     name: "Axis Bank",
     redirectURL: "https://omni.axisbank.co.in/axisretailbanking/",
   },
@@ -45,11 +47,14 @@ export function PaymentForm() {
         </label>
         <Select
           onSelect={(value) =>
-            setRedirectURL(
-              SUPPORTED_BANKS.find((x) => x.name === value)?.redirectURL
-            )
+            useEffect(() => {
+              setRedirectURL(
+                SUPPORTED_BANKS.find((x) => x.name === value)?.redirectURL
+              );
+            }, [])
           }
           options={SUPPORTED_BANKS.map((x) => ({
+            id: x.id,
             key: x.name,
             value: x.name,
           }))}

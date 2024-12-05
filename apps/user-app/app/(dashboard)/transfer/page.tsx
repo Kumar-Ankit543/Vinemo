@@ -5,6 +5,7 @@ import { OnRampTransaction } from "../../../components/OnRampTransaction";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../lib/auth";
 import db from "@repo/db/client";
+import { redirect } from "next/navigation";
 
 async function getBalance() {
   const session = await getServerSession(authOptions);
@@ -15,9 +16,9 @@ async function getBalance() {
   });
   return {
     //@ts-ignore
-    amount: balance.amount,
+    amount: balance?.amount || 0,
     //@ts-ignore
-    locked: balance.locked,
+    locked: balance?.locked || 0,
   };
 }
 
@@ -37,7 +38,12 @@ async function getOnRampTransaction() {
 }
 
 export default async function TransferPage() {
+  const session = await getServerSession(authOptions);
+  if (!session.user) {
+    redirect("/");
+  }
   const transactions = await getOnRampTransaction();
+  const balance = await getBalance();
   return (
     <div className="p-8">
       <div className="mb-8">
@@ -49,7 +55,7 @@ export default async function TransferPage() {
         <PaymentForm />
         <div>
           <div className="pb-2">
-            <BalanceCard amount={100} locked={200} />
+            <BalanceCard amount={balance.amount} locked={balance.locked} />
           </div>
           <div>
             <OnRampTransaction transactions={transactions} />
