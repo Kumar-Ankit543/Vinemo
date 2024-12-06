@@ -2,6 +2,8 @@
 import { Select } from "@repo/ui/select";
 import { IndianRupee } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Button } from "@repo/ui";
+import { onRampTransaction } from "../app/lib/onRampTrxn";
 
 const SUPPORTED_BANKS = [
   {
@@ -20,6 +22,9 @@ export function PaymentForm() {
   const [redirectURL, setRedirectURL] = useState(
     SUPPORTED_BANKS[0]?.redirectURL
   );
+  const [amount, setAmount] = useState(0);
+  const [provider, setProvider] = useState(SUPPORTED_BANKS[0]?.name || "");
+
   return (
     <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
       <h2 className="text-lg font-semibold text-gray-900 mb-6">
@@ -34,6 +39,9 @@ export function PaymentForm() {
             <IndianRupee className="text-green-600" />
           </span>
           <input
+            onChange={(e) => {
+              setAmount(e.target.value);
+            }}
             type="text"
             className="w-full pl-8 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="0.00"
@@ -46,13 +54,12 @@ export function PaymentForm() {
           Choose Bank
         </label>
         <Select
-          onSelect={(value) =>
-            useEffect(() => {
-              setRedirectURL(
-                SUPPORTED_BANKS.find((x) => x.name === value)?.redirectURL
-              );
-            }, [])
-          }
+          onSelect={(value) => {
+            setRedirectURL(
+              SUPPORTED_BANKS.find((x) => x.name === value)?.redirectURL
+            );
+            setProvider(SUPPORTED_BANKS.find((x) => x.name === value)?.name);
+          }}
           options={SUPPORTED_BANKS.map((x) => ({
             id: x.id,
             key: x.name,
@@ -60,9 +67,15 @@ export function PaymentForm() {
           }))}
         />
       </div>
-      <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+      <Button
+        onClick={async () => {
+          await onRampTransaction(amount * 100, provider);
+          window.location.href = redirectURL || "";
+        }}
+        className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+      >
         Send Money
-      </button>
+      </Button>
     </div>
   );
 }
