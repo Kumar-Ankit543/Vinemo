@@ -40,7 +40,7 @@ export function PaymentForm() {
           </span>
           <input
             onChange={(e) => {
-              setAmount(e.target.value);
+              setAmount(Number(e.target.value));
             }}
             type="text"
             className="w-full pl-8 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -58,7 +58,9 @@ export function PaymentForm() {
             setRedirectURL(
               SUPPORTED_BANKS.find((x) => x.name === value)?.redirectURL
             );
-            setProvider(SUPPORTED_BANKS.find((x) => x.name === value)?.name);
+            setProvider(
+              SUPPORTED_BANKS.find((x) => x.name === value)?.name as string
+            );
           }}
           options={SUPPORTED_BANKS.map((x) => ({
             id: x.id,

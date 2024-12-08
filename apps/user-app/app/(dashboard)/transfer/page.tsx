@@ -15,10 +15,8 @@ async function getBalance() {
     },
   });
   return {
-    //@ts-ignore
-    amount: balance?.amount || 0,
-    //@ts-ignore
-    locked: balance?.locked || 0,
+    amount: balance[0]?.amount || 0,
+    locked: balance[0]?.locked || 0,
   };
 }
 

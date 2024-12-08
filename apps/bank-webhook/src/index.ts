@@ -2,18 +2,23 @@ import express from "express";
 import db from "@repo/db/client";
 
 const app = express();
+app.use(express.json());
 
 app.post("/hdfcWebhook", async (req, res) => {
-  const paymentInfo = {
+  const paymentInfo: {
+    token: string;
+    userId: number;
+    amount: string;
+  } = {
     token: req.body.token,
     userId: req.body.user_indentifier,
     amount: req.body.amount,
   };
   try {
     await db.$transaction([
-      db.balance.update({
+      db.balance.updateMany({
         where: {
-          userId: Number(paymentInfo.userId),
+          userId: paymentInfo.userId,
         },
         data: {
           amount: {
@@ -21,7 +26,7 @@ app.post("/hdfcWebhook", async (req, res) => {
           },
         },
       }),
-      db.onRampTransaction.update({
+      db.onRampTransaction.updateMany({
         where: {
           token: paymentInfo.token,
         },
@@ -34,6 +39,7 @@ app.post("/hdfcWebhook", async (req, res) => {
       message: "Captured",
     });
   } catch (error) {
+    console.log(`error ${error}`);
     res.status(411).json({
       message: "Error while processing webhook",
     });

@@ -13,13 +13,13 @@ function generateBase64RandomString(length: number) {
 export async function onRampTransaction(amount: number, provider: string) {
   const session = await getServerSession(authOptions);
   const userId = session.user.id;
-  const token = generateBase64RandomString(48);
 
   if (!userId) {
     return {
       message: "User not logged in",
     };
   }
+  const token = generateBase64RandomString(48);
 
   await prisma.onRampTransaction.create({
     data: {
