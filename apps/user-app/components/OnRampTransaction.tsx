@@ -17,7 +17,7 @@ export const OnRampTransaction = ({
   }
   return (
     <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-      <h2 className="text-lg font-semibold text-gray-900 mb-6">
+      <h2 className="text-lg font-semibold text-gray-900 mb-2">
         Recent Transactions
       </h2>
       <div className="pt-2">
@@ -25,7 +25,14 @@ export const OnRampTransaction = ({
           <div className="flex justify-between">
             <div>
               <div className="text-sm">Received INR</div>
-              <div className="text-slate-600 text-xs pb-2">
+              {t.status === "Success" ? (
+                <div className="text-sm text-green-600">{t.status}</div>
+              ) : t.status === "Processing" ? (
+                <div className="text-sm text-orange-600">{t.status}</div>
+              ) : (
+                <div className="text-sm text-red-600">{t.status}</div>
+              )}
+              <div className="text-slate-600 text-xs pb-4">
                 {t.time.toDateString()}
               </div>
             </div>
