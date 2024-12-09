@@ -41,7 +41,6 @@ export default async function TransferPage() {
     redirect("/");
   }
   const transactions = await getOnRampTransaction();
-  console.log(transactions);
   const balance = await getBalance();
   return (
     <div className="p-8">

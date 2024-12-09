@@ -1,7 +1,7 @@
 "use client";
 import { Select } from "@repo/ui/select";
 import { IndianRupee } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@repo/ui";
 import { onRampTransaction } from "../app/lib/onRampTrxn";
 
@@ -35,7 +35,7 @@ export function PaymentForm() {
           Amount
         </label>
         <div className="relative">
-          <span className="absolute left-3 top-2.5 text-gray-500">
+          <span className="absolute left-1 top-2.5 text-gray-500">
             <IndianRupee className="text-green-600" />
           </span>
           <input

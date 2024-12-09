@@ -1,13 +1,19 @@
 "use client";
 
-import { Home, Send, History } from "lucide-react";
+import {
+  Home,
+  ArrowRightLeft,
+  History,
+  CircleArrowOutUpRight,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const menuItems = [
   { icon: Home, label: "Home", path: "/" },
-  { icon: Send, label: "Transfer", path: "/transfer" },
+  { icon: ArrowRightLeft, label: "Transfer", path: "/transfer" },
   { icon: History, label: "Transactions", path: "/transactions" },
+  { icon: CircleArrowOutUpRight, label: "P2P Transfer", path: "/p2pTransfer" },
 ];
 
 export function Sidebar() {

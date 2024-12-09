@@ -15,6 +15,12 @@ app.post("/hdfcWebhook", async (req, res) => {
     amount: req.body.amount,
   };
   try {
+    const status = await db.onRampTransaction.findMany({
+      where: {
+        userId: paymentInfo.userId,
+      },
+    });
+    console.log("status" + JSON.stringify(status));
     await db.$transaction([
       db.balance.updateMany({
         where: {
