@@ -3,7 +3,7 @@ import { Select } from "@repo/ui/select";
 import { IndianRupee } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@repo/ui";
-import { onRampTransaction } from "../app/lib/onRampTrxn";
+import { onRampTransaction } from "../app/lib/actions/onRampTrxn";
 
 const SUPPORTED_BANKS = [
   {
