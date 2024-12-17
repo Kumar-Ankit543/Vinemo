@@ -9,7 +9,7 @@ export function SendCard() {
   const [number, setNumber] = useState("");
   const [amount, setAmount] = useState(0);
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div>
       <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
         <h2 className="text-lg font-semibold text-gray-900 mb-6">Send Money</h2>
         <div>
