@@ -28,6 +28,7 @@ async function getOnRampTransaction() {
     },
   });
   return txns.map((t) => ({
+    id: t.id,
     time: t.startTime,
     amount: t.amount,
     status: t.status,
@@ -46,7 +47,7 @@ export default async function TransferPage() {
     <div className="p-8">
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900">Transfer Money</h1>
-        <p className="text-gray-600">Send money to your friends and family</p>
+        <p className="text-gray-600">Add money to your wallet</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

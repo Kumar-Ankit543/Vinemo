@@ -2,6 +2,7 @@ export const OnRampTransaction = ({
   transactions,
 }: {
   transactions: {
+    id: number;
     time: Date;
     amount: number;
     status: string;
@@ -22,7 +23,7 @@ export const OnRampTransaction = ({
       </h2>
       <div className="pt-2">
         {transactions.map((t) => (
-          <div className="flex justify-between">
+          <div key={t.id} className="flex justify-between">
             <div>
               <div className="text-sm">Received INR</div>
               {t.status === "Success" ? (

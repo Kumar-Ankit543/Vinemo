@@ -27,10 +27,16 @@ export default async function () {
   }
   const transactions = await getP2Ptransaction();
   return (
-    <div className="grid grid-cols-2 gap-2 mt-10 ml-2 mr-2">
-      <SendCard />
+    <div className="p-8">
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-gray-900">Transfer Money</h1>
+        <p className="text-gray-600">Send money to your friends and family</p>
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        <SendCard />
 
-      <P2Ptransfer transactions={transactions} />
+        <P2Ptransfer transactions={transactions} />
+      </div>
     </div>
   );
 }
