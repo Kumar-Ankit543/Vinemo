@@ -38,8 +38,8 @@ async function getOnRampTransaction() {
 
 export default async function TransferPage() {
   const session = await getServerSession(authOptions);
-  if (!session.user) {
-    redirect("/");
+  if (!session?.user || null) {
+    return redirect("/");
   }
   const transactions = await getOnRampTransaction();
   const balance = await getBalance();

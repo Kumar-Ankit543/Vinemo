@@ -22,7 +22,7 @@ async function getP2Ptransaction() {
 
 export default async function () {
   const session = await getServerSession(authOptions);
-  if (!session.user) {
+  if (!session?.user || null) {
     redirect("/");
   }
   const transactions = await getP2Ptransaction();
