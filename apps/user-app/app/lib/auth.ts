@@ -15,6 +15,7 @@ export const authOptions = {
         },
         password: { label: "password", type: "password" },
       },
+
       async authorize(credentials: any) {
         const hashedPassword = await bcrypt.hash(credentials.password, 10);
         const existingUser = await db.user.findFirst({
@@ -55,11 +56,15 @@ export const authOptions = {
       },
     }),
   ],
+
   secret: process.env.NEXTAUTH_SECRET || "secret",
   callbacks: {
     async session({ session, token }: any) {
       session.user.id = token.sub;
       return session;
     },
+  },
+  pages: {
+    signIn: "/signin",
   },
 };

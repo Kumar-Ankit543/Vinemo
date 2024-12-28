@@ -18,7 +18,6 @@ export const SigninComponent: React.FC<ButtonProps> = ({ onClick }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle sign-in logic here
-    console.log("Sign in with:", phone, password);
   };
 
   return (
